@@ -1,0 +1,15 @@
+{
+  "workbench.colorCustomizations": {
+    "[Default Dark+]": {
+      "sideBar.background": "#282831",
+      "activityBar.background": "#282831",
+      "dropdown.background": "#282831",
+      "badge.background": "#4dd693",
+      "list.activeSelectionBackground": "#4dd693",
+      "tab.activeBackground": "#0c6674"
+    },
+    "activityBar.background": "#283102",
+    "titleBar.activeBackground": "#384503",
+    "titleBar.activeForeground": "#F6FDD8"
+  }
+}
