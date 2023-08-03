@@ -1,6 +1,7 @@
 version: "3.6"
 services:
   postgres:
+    build: ./postgres_custom  # The path to your Dockerfile
     image: postgres:15
     restart: always
     volumes:
