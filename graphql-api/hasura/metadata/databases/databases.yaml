@@ -1,0 +1,9 @@
+- name: demodb
+  kind: postgres
+  configuration:
+    connection_info:
+      database_url:
+        from_env: DATABASE_CONNECTION_STRING
+      isolation_level: read-committed
+      use_prepared_statements: false
+  tables: "!include demodb/tables/tables.yaml"

@@ -1,20 +1,25 @@
 
 
 # steps of what i did
-
 # 1
 I cloned the example repo of next auth ( subdomain-auth)
 `pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/subdomain-auth subdomain-auth`
-
 
 
 # 2
 Then I modified the [nextAuth].ts file to use the "jwt" strategy
 
 
+HASURA_GRAPHQL_JWT_SECRET
+
+generate a 32 character long jwt secret:
+
+
+To generate a new secret with 32 characters, you can use the openssl command. Open your terminal and run:
+
+`openssl rand -base64 32`
+
 # 3 Have to configure types in files next-auth.d.ts to extend the default types of next-auth
-
-
 
 
 # 4 set up hasura locally in order to create database tables to store the user jwt token

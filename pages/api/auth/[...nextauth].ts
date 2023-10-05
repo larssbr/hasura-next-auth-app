@@ -1,5 +1,5 @@
 import GitHubProvider from 'next-auth/providers/github'
-
+import LinkedInProvider from "next-auth/providers/linkedin";
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import { Adapter } from 'next-auth/adapters';
 import AzureADProvider, { AzureADProfile } from 'next-auth/providers/azure-ad';
@@ -24,10 +24,14 @@ export const authOptions: NextAuthOptions = {
   }) as Adapter
   | undefined,
   providers: [
-    // GitHubProvider({
-    //   clientId: process.env.GITHUB_ID as string,
-    //   clientSecret: process.env.GITHUB_SECRET as string,
-    // }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
+    }),
+    LinkedInProvider({
+      clientId: process.env.LINKEDIN_CLIENT_ID as string,
+      clientSecret: process.env.LINKEDIN_CLIENT_SECRET as string
+    }),
     AzureADProvider({
       clientId: process.env.AZURE_AD_CLIENT_ID as string,
       clientSecret: process.env.AZURE_AD_CLIENT_SECRET as string,

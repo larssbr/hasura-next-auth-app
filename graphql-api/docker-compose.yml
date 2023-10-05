@@ -1,12 +1,16 @@
 version: "3.6"
 services:
   postgres:
-    build: ./postgres_custom  # The path to your Dockerfile
+    build: ./postgres_custom/docker_uuid  # The path to your Dockerfile
     image: postgres:15
     restart: always
+    ports:
+      - '5432:5432'
     volumes:
       - db_data:/var/lib/postgresql/data
+      - ./docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
     environment:
+      POSTGRES_MULTIPLE_DATABASES: demodb
       POSTGRES_PASSWORD: postgrespassword
   graphql-engine:
     image: hasura/graphql-engine:v2.30.0
@@ -26,8 +30,11 @@ services:
       ## uncomment next line to run console offline (i.e load console assets from server instead of CDN)
       # HASURA_GRAPHQL_CONSOLE_ASSETS_DIR: /srv/console-assets
       ## uncomment next line to set an admin secret
-      # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+      HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
       HASURA_GRAPHQL_METADATA_DEFAULTS: '{"backend_configs":{"dataconnector":{"athena":{"uri":"http://data-connector-agent:8081/api/v1/athena"},"mariadb":{"uri":"http://data-connector-agent:8081/api/v1/mariadb"},"mysql8":{"uri":"http://data-connector-agent:8081/api/v1/mysql"},"oracle":{"uri":"http://data-connector-agent:8081/api/v1/oracle"},"snowflake":{"uri":"http://data-connector-agent:8081/api/v1/snowflake"}}}}'
+      DATABASE_CONNECTION_STRING: postgres://postgres:postgrespassword@host.docker.internal:5432/demodb
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: anonymous
+      HASURA_GRAPHQL_JWT_SECRET: '{"key":"0wnzYRGUakdjegVByIirDbO2TD7S4JyiuHcgzU05JFs=","type":"HS256"}'
     depends_on:
       data-connector-agent:
         condition: service_healthy

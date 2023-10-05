@@ -7,7 +7,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:down": "docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker volume prune -f",
+    "docker:clean": "cd graphql-api &&  docker-compose down -v",
+    "docker:up": "cd graphql-api && docker-compose up -d",
+    "docker:up-linux": "cd graphql-api && docker compose up -d",
+    "docker:start": "cd graphql-api/hasura && hasura metadata apply && hasura migrate apply && hasura metadata reload && hasura console"
   },
   "dependencies": {
     "@vercel/examples-ui": "^1.0.5",
