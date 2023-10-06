@@ -1,3 +1,4 @@
 - "!include public_accounts.yaml"
 - "!include public_provider_type.yaml"
+- "!include public_sessions.yaml"
 - "!include public_users.yaml"

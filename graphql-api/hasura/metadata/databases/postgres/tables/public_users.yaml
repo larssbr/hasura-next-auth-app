@@ -1,3 +1,23 @@
 table:
   name: users
   schema: public
+object_relationships:
+  - name: session
+    using:
+      manual_configuration:
+        column_mapping:
+          id: userid
+        insertion_order: null
+        remote_table:
+          name: sessions
+          schema: public
+array_relationships:
+  - name: accounts
+    using:
+      manual_configuration:
+        column_mapping:
+          id: userId
+        insertion_order: null
+        remote_table:
+          name: accounts
+          schema: public

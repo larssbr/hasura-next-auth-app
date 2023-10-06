@@ -1,3 +1,22 @@
 table:
   name: accounts
   schema: public
+object_relationships:
+  - name: provider_type
+    using:
+      manual_configuration:
+        column_mapping:
+          type: value
+        insertion_order: null
+        remote_table:
+          name: provider_type
+          schema: public
+  - name: user
+    using:
+      manual_configuration:
+        column_mapping:
+          userId: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: public

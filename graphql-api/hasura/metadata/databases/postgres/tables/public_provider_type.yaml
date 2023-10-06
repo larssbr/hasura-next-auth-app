@@ -1,3 +1,13 @@
 table:
   name: provider_type
   schema: public
+array_relationships:
+  - name: accounts
+    using:
+      manual_configuration:
+        column_mapping:
+          value: type
+        insertion_order: null
+        remote_table:
+          name: accounts
+          schema: public
