@@ -1,58 +1,58 @@
+### Overview
+This document outlines the steps for setting up NextAuth with subdomain authentication and integrating it with Hasura.
+
+### Step 1: Clone the Example Repo
+Start by cloning the NextAuth example repo, specifically the subdomain-auth example:
+
+`pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/subdomain-auth subdomain-auth``
+
+### Step 2: Configure JWT Strategy
+Navigate to the [nextAuth].ts file and switch the authentication strategy to "JWT".
+
+Generate JWT Secret
+You'll need a 32-character long JWT secret. To generate one, run the following command:
+
+`openssl rand -base64 32``
+
+After adding the secret, fire up the Hasura console:
 
 
-# steps of what i did
-# 1
-I cloned the example repo of next auth ( subdomain-auth)
-`pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/subdomain-auth subdomain-auth`
+cd /graphql-api/hasura
+hasura console
+Set Database Connection String
+In the Hasura console, locate the Postgres connector and set the DATABASE_CONNECTION_STRING environment variable. This should match the connection string specified in your docker-compose.yaml file.
+
+### Step 3: Update Type Definitions
+Update next-auth.d.ts to extend the default types provided by NextAuth.
+
+### Step 4: Local Hasura Setup
+To set up Hasura locally and create the necessary database tables, follow this guide. Download the default docker-compose.yml:
 
 
-# 2
-Then I modified the [nextAuth].ts file to use the "jwt" strategy
+`curl https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/docker-compose/docker-compose.yaml -o docker-compose.yml``
 
+Start the Hasura Docker container:
 
-HASURA_GRAPHQL_JWT_SECRET
+`docker-compose up -d`
 
-generate a 32 character long jwt secret:
-
-
-To generate a new secret with 32 characters, you can use the openssl command. Open your terminal and run:
-
-`openssl rand -base64 32`
-
-
-
-once you add the secret next step is to run console.
-
-go into folder /graphql-api/hasura and run `hasura console`
-
-Then click on the postgres connector and add the environment variable: DATABASE_CONNECTION_STRING
-
-this is the DATABASE_CONNECTION_STRING that is from docker in your docker-compose.yaml file.
-
-# 3 Have to configure types in files next-auth.d.ts to extend the default types of next-auth
-
-
-# 4 set up hasura locally in order to create database tables to store the user jwt token
-
-following this guide (https://hasura.io/docs/latest/getting-started/docker-simple/) we do:
-
-`curl https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/docker-compose/docker-compose.yaml -o docker-compose.yml`
-
-then we run:
-
-`docker compose up -d`
-
-# 5
-Then i went into hasura and I created the folowing tables:
+### Step 5: Create Tables in Hasura
+Navigate to the Hasura console and create the following tables:
 
 users
-
 accounts
 
-# 6 connect with 3-party providers.
+### Step 6: Third-Party Provider Integration
+Finally, establish connections with any third-party authentication providers you plan to use.
 
+- add a file: .env
 
+In .env.example file there is a starting point for setting up the third party providers.
 
+Just go to each website and set up the account
+-github: https://next-auth.js.org/providers/github
+-azure AD: https://next-auth.js.org/providers/azure-ad
+-linkedin: https://next-auth.js.org/providers/linkedin
 
+one can add any of the providers from next-auth providers: https://next-auth.js.org/providers/
 
-
+And you're all set!
