@@ -20,5 +20,3 @@ if [ -n "$POSTGRES_MULTIPLE_DATABASES" ]; then
 	done
 	echo "Multiple databases created"
 fi
-
-#pg_restore -U postgres -d demodb /docker-entrypoint-initdb.d/demodb.dump

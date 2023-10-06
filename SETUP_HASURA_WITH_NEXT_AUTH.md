@@ -19,6 +19,16 @@ To generate a new secret with 32 characters, you can use the openssl command. Op
 
 `openssl rand -base64 32`
 
+
+
+once you add the secret next step is to run console.
+
+go into folder /graphql-api/hasura and run `hasura console`
+
+Then click on the postgres connector and add the environment variable: DATABASE_CONNECTION_STRING
+
+this is the DATABASE_CONNECTION_STRING that is from docker in your docker-compose.yaml file.
+
 # 3 Have to configure types in files next-auth.d.ts to extend the default types of next-auth
 
 
@@ -38,6 +48,10 @@ Then i went into hasura and I created the folowing tables:
 users
 
 accounts
+
+# 6 connect with 3-party providers.
+
+
 
 
 
