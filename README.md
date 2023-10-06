@@ -43,3 +43,6 @@ run hasura console locally
 
 to run start nextjs application
 `yarn dev`
+
+⚠️ remember to configuere .env file
+⚠️ remember to generate jwt secret
