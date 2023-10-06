@@ -27,3 +27,19 @@ If TypeScript is your jam, you'll appreciate how Auth.js is designed with type s
 The union of Hasura and Auth.js will accelerate your development cycle and provide a secure, scalable solution that meets modern demands. Join us in making API development a breeze!
 
 Feel free to jump into the code and let the magic begin! 🚀
+
+
+### To start the project:
+
+install:
+`yarn`
+
+build docker:
+`yarn docker:up`
+
+run hasura console locally
+`yarn docker:start`
+
+
+to run start nextjs application
+`yarn dev`
